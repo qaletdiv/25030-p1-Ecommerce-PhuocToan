@@ -35,10 +35,8 @@ function renderHeaderActions() {
   }
 }
 
-// Gọi thẳng hàm ở đây
 renderHeaderActions();
 
-// products.js (trang products.html)
 const allProducts = JSON.parse(localStorage.getItem("products")); // tất cả sản phẩm
 const productListContainer = document.querySelector("#productList"); // thẻ chứa sản phẩm
 
