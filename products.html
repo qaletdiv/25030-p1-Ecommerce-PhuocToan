@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <title>PhoneStore - Sản phẩm</title>
+    <script src="assets/js/products.js" defer></script>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header class="header">
+      <div class="header-container">
+        <div class="logo">PhoneStore</div>
+
+        <!-- SEARCH BOX -->
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Tìm kiếm sản phẩm..."
+          />
+          <div class="search-result" id="searchResult"></div>
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="actions" id="headerActions"></div>
+      </div>
+    </header>
+    <!-- BANNER -->
+    <section class="banner">
+      <img src="assets/img/banner/banner.webp" alt="Banner" />
+    </section>
+    <!-- BANNER -->
+    <nav class="navbar">
+      <ul>
+        <li><a href="index.html">Trang chủ</a></li>
+        <li><a href="products.html" class="active">Tất cả sản phẩm</a></li>
+      </ul>
+    </nav>
+    <!-- MAIN CONTENT -->
+    <main class="product-section">
+      <!-- Filter & Sort -->
+      <div
+        class="filter-sort"
+        style="max-width: 1200px; margin: 20px auto; display: flex; gap: 15px"
+      >
+        <select id="categoryFilter">
+          <option value="all">Tất cả danh mục</option>
+          <option value="iphone">iPhone</option>
+          <option value="samsung">Samsung</option>
+          <option value="xiaomi">Xiaomi</option>
+          <option value="realme">Realme</option>
+        </select>
+
+        <select id="sortOption">
+          <option value="default">Sắp xếp mặc định</option>
+          <option value="priceAsc">Giá tăng dần</option>
+          <option value="priceDesc">Giá giảm dần</option>
+          <option value="nameAsc">Tên A-Z</option>
+          <option value="nameDesc">Tên Z-A</option>
+        </select>
+      </div>
+
+      <!-- Product List -->
+      <div class="product-list" id="productList"></div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h3>PhoneStore</h3>
+          <p>📍 123 Nguyễn Văn Linh, Hải Châu, TP Đà Nẵng</p>
+          <p>📞 0909 123 456</p>
+          <p>✉️ support@phonestore.vn</p>
+          <p>🕒 8:00 - 21:00 (T2 - CN)</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Chính sách</h4>
+          <ul>
+            <li><a href="#">Bảo hành</a></li>
+            <li><a href="#">Đổi trả</a></li>
+            <li><a href="#">Vận chuyển</a></li>
+            <li><a href="#">Bảo mật</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Sản phẩm</h4>
+          <ul>
+            <li><a href="#">iPhone</a></li>
+            <li><a href="#">Samsung</a></li>
+            <li><a href="#">Xiaomi</a></li>
+            <li><a href="#">Oppo</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Kết nối</h4>
+          <div class="social">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <p class="copy">© 2025 PhoneStore. All rights reserved.</p>
+    </footer>
+
+    <script src="assets/js/mock-data.js"></script>
+    <script src="assets/js/storage.js"></script>
+    <script src="assets/js/products.js"></script>
+  </body>
+</html>
