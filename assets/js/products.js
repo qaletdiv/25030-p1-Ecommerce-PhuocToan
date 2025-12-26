@@ -60,3 +60,42 @@ function renderProducts(productArray) {
 
 // Render tất cả sản phẩm ngay khi trang load
 renderProducts(allProducts);
+
+//Filer
+const categoryFilter = document.querySelector("#categoryFilter");
+categoryFilter.addEventListener("change", function (event) {
+  const selectedCategory = event.target.value;
+  if (selectedCategory === "all") {
+    renderProducts(allProducts);
+    return;
+  }
+  const filteredProducts = allProducts.filter(
+    (product) => product.category === selectedCategory
+  );
+  renderProducts(filteredProducts);
+});
+
+//Sort
+const sortSelect = document.querySelector("#sortOption");
+sortSelect.addEventListener("change", function (event) {
+  const sortValue = event.target.value;
+  handleSort(sortValue);
+});
+function handleSort(sortValue) {
+  //gán lại giá trị khác nên ở đây em dùng let
+  //copy mảng không thay đổi mảng gốc
+  let sortedProducts = [...allProducts];
+  if (sortValue === "priceAsc") {
+    sortedProducts.sort((a, b) => a.price - b.price);
+  }
+  if (sortValue === "priceDesc") {
+    sortedProducts.sort((a, b) => b.price - a.price);
+  }
+  if (sortValue === "nameAsc") {
+    sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
+  }
+  if (sortValue === "nameAsc") {
+    sortedProducts.sort((a, b) => b.name.localeCompare(a.name));
+  }
+  renderProducts(sortedProducts);
+}

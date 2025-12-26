@@ -180,7 +180,7 @@ body {
 /* GRID */
 .product-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
 
@@ -430,6 +430,23 @@ body {
   .footer-container {
     grid-template-columns: 1fr;
   }
+}
+/* FILTER TRANG SẢN PHẨM (A2) */
+.filter-sort {
+  max-width: 1200px;
+  margin: 20px auto;
+  display: flex;
+  gap: 15px;
+}
+
+.filter-sort select {
+  padding: 10px 14px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+  background-color: #fff;
+  transition: all 0.2s ease;
 }
 
 /* FORM ĐĂNG KÍ (REGISTER FORM)*/
