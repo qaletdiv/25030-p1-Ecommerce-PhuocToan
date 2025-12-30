@@ -21,7 +21,7 @@ function renderHeaderActions() {
       </a>
 
       <a href="#" id="logoutBtn">Đăng xuất</a>
-      <a href="#" class="cart">
+      <a href="cart.html" class="cart">
         <i class="fa-solid fa-cart-shopping"></i>
       </a>
     `;
@@ -51,7 +51,12 @@ function renderProducts(productArray) {
         <img src="${product.image}" alt="${product.name}">
         <h3>${product.name}</h3>
         <p class="price">${product.price.toLocaleString()}đ</p>
-        <button class="add-to-cart">Thêm vào giỏ hàng</button>
+        <a 
+          href="product-detail.html?id=${product.id}" 
+          class="view-detail"
+        >
+          Xem chi tiết
+        </a>
       </div>
     `;
     productListContainer.innerHTML += productHTML;
@@ -94,7 +99,7 @@ function handleSort(sortValue) {
   if (sortValue === "nameAsc") {
     sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
   }
-  if (sortValue === "nameAsc") {
+  if (sortValue === "nameDesc") {
     sortedProducts.sort((a, b) => b.name.localeCompare(a.name));
   }
   renderProducts(sortedProducts);

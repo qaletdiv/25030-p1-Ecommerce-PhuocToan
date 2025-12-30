@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Giỏ hàng</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/cart.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- HEADER -->
+    <!-- HEADER -->
+    <header class="header">
+      <div class="header-container">
+        <div class="logo">PhoneStore</div>
+
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Tìm kiếm sản phẩm..."
+          />
+          <div class="search-result" id="searchResult"></div>
+        </div>
+
+        <div class="actions" id="headerActions"></div>
+      </div>
+    </header>
+    <main class="cart-page">
+      <h1 class="cart-title">🛒 Giỏ hàng của bạn</h1>
+
+      <!-- JS render vô đây -->
+      <div id="cart-list"></div>
+
+      <!-- Summary -->
+      <div class="cart-summary">
+        <p class="total-label">
+          Tổng tiền:
+          <span id="total-price">0 ₫</span>
+        </p>
+
+        <div class="cart-actions">
+          <a href="index.html" class="continue-btn">Tiếp tục mua hàng</a>
+          <button class="checkout-btn">Thanh toán</button>
+        </div>
+      </div>
+    </main>
+    <script src="assets/js/cart.js"></script>
+  </body>
+</html>

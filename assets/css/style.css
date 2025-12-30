@@ -252,54 +252,6 @@ body {
   color: #ffffff;
   transform: translateY(-2px);
 }
-/* ================= FOOTER ================= */
-.footer {
-  background: #111111;
-  color: #cccccc;
-  padding: 50px 20px;
-  margin-top: 40px;
-}
-
-.footer-container {
-  max-width: 1200px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 40px;
-}
-
-.footer h3 {
-  color: #ffffff;
-  margin-bottom: 15px;
-  font-size: 17px;
-}
-
-.footer ul {
-  list-style: none;
-}
-
-.footer ul li {
-  margin-bottom: 10px;
-}
-
-.footer ul li a {
-  text-decoration: none;
-  color: #cccccc;
-  font-size: 14px;
-}
-
-.footer ul li a:hover {
-  color: #ffffff;
-}
-
-.footer-bottom {
-  text-align: center;
-  margin-top: 30px;
-  padding-top: 15px;
-  border-top: 1px solid #333333;
-  color: #bbbbbb;
-  font-size: 14px;
-}
 
 /* ================= RESPONSIVE ================= */
 @media (max-width: 768px) {
@@ -493,4 +445,27 @@ body {
 .auth-btn:hover {
   background: #6a00ff;
   transform: translateY(-2px);
+}
+/* Xem chi tiết */
+.view-detail {
+  display: inline-block;
+  width: 100%;
+  margin-top: 10px;
+
+  text-align: center;
+  padding: 8px 0;
+
+  border: 1px solid #5b21b6;
+  border-radius: 4px;
+
+  text-decoration: none;
+  font-size: 14px;
+  color: #5b21b6;
+
+  transition: all 0.3s ease;
+}
+
+.view-detail:hover {
+  background-color: #7c3aed;
+  color: #fff;
 }

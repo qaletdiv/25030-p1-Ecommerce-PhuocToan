@@ -43,14 +43,13 @@ function renderHeaderActions() {
   }
   //Trường hợp đã đăng nhập
   else {
-    //cái chỗ cart thì ít bữa làm cái trang giỏ hàng
     actions.innerHTML = `
     <a href="#" class="account">
       <i class="fa-solid fa-user"></i> ${currentUser.fullName}
     </a>
     
     <a href="#" id="logoutBtn">Đăng xuất</a>
-    <a href="#" class="cart">
+    <a href="cart.html" class="cart">
       <i class="fa-solid fa-cart-shopping"></i>
     </a>
     `;
@@ -101,17 +100,37 @@ function renderFeaturedProducts() {
     container.innerHTML += productHTML;
   });
 }
+function attachAddToCartEvents() {
+  const buttons = document.querySelectorAll(".add-to-cart");
+  buttons.forEach((btn, index) => {
+    btn.addEventListener("click", function () {
+      handleAddToCart(products[index]);
+    });
+  });
+}
+//Hàm handle to Cart
+function handleAddToCart(product) {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  //chưa đăng nhập
+  if (!currentUser) {
+    alert("Vui lòng đăng nhập");
+    window.location.href = "login.html";
+    return;
+  } else {
+    //lúc sau thì nên code sau khi Làm trang giỏ hang
+  }
+}
 
 //THANH INPUT
-searchInput.addEventListener("input", function () {
-  const keyword = searchInput.value.toLowerCase().trim();
-  //Lọc sản phẩm theo tên
-  const filteredProducts = featuredProducts.filter((product) =>
-    product.name.toLowerCase().includes(keyword)
-  );
+// searchInput.addEventListener("input", function () {
+//   const keyword = searchInput.value.toLowerCase().trim();
+//   //Lọc sản phẩm theo tên
+//   const filteredProducts = featuredProducts.filter((product) =>
+//     product.name.toLowerCase().includes(keyword)
+//   );
 
-  renderFeaturedProducts(filteredProducts);
-});
+//   renderFeaturedProducts(filteredProducts);
+// });
 
 //GỢI Ý KHI GÕ (SEARCH DROPDOWN GIỐNG TRANG WEB BÁN HÀNG)
 //Lấy element kết quả search
@@ -164,3 +183,4 @@ searchInput.addEventListener("input", function () {
 
 //Gọi hàm để render sp khi trang vừa reload
 renderFeaturedProducts();
+attachAddToCartEvents();
