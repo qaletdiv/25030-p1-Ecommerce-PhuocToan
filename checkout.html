@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thanh Toán</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/checkout.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- HEADER -->
+
+    <header class="header">
+      <div class="header-container">
+        <div class="logo">PhoneStore</div>
+
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Tìm kiếm sản phẩm..."
+          />
+          <div class="search-result" id="searchResult"></div>
+        </div>
+
+        <div class="actions" id="headerActions"></div>
+      </div>
+    </header>
+
+    <main class="checkout-page">
+      <div class="checkout-container">
+        <div class="checkout-layout">
+          <!-- LEFT: FORM -->
+          <section class="checkout-left">
+            <h2>Thông tin khách hàng</h2>
+
+            <div class="gender">
+              <label><input type="radio" name="gender" checked /> Anh</label>
+              <label><input type="radio" name="gender" /> Chị</label>
+            </div>
+
+            <div class="form-row">
+              <input type="text" id="fullnameInput" placeholder="Họ và tên" />
+              <input type="tel" id="phoneInput" placeholder="Số điện thoại" />
+            </div>
+
+            <h2>Hình thức nhận hàng</h2>
+
+            <div class="delivery">
+              <label
+                ><input type="radio" name="delivery" checked /> Giao tận
+                nơi</label
+              >
+              <label
+                ><input type="radio" name="delivery" /> Nhận tại cửa hàng</label
+              >
+            </div>
+
+            <div class="address-box">
+              <div class="address-row">
+                <select id="city">
+                  <option value="">Chọn Tỉnh / Thành phố</option>
+                  <option value="hcm">TP. Hồ Chí Minh</option>
+                  <option value="hn">Hà Nội</option>
+                  <option value="dn">Đà Nẵng</option>
+                </select>
+
+                <select id="district" disabled>
+                  <option value="">Chọn Quận / Huyện</option>
+                </select>
+              </div>
+
+              <input
+                type="text"
+                id="addressInput"
+                placeholder="Địa chỉ cụ thể"
+              />
+            </div>
+
+            <textarea
+              id="note"
+              class="note-input"
+              placeholder="Nhập ghi chú (nếu có)"
+            ></textarea>
+          </section>
+
+          <!-- RIGHT: ORDER -->
+          <section class="checkout-right">
+            <h2>Đơn hàng</h2>
+
+            <!-- JS render vào đây -->
+            <div id="order-items"></div>
+
+            <div class="order-total">
+              <span>Tổng tiền</span>
+              <strong id="total-price">0đ</strong>
+            </div>
+
+            <button class="btn-confirm">Xác nhận đơn hàng</button>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h3>PhoneStore</h3>
+          <p>📍 123 Nguyễn Văn Linh, Hải Châu, TP Đà Nẵng</p>
+          <p>📞 0909 123 456</p>
+          <p>✉️ support@phonestore.vn</p>
+          <p>🕒 8:00 - 21:00 (T2 - CN)</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Chính sách</h4>
+          <ul>
+            <li><a href="#">Bảo hành</a></li>
+            <li><a href="#">Đổi trả</a></li>
+            <li><a href="#">Vận chuyển</a></li>
+            <li><a href="#">Bảo mật</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Sản phẩm</h4>
+          <ul>
+            <li><a href="#">iPhone</a></li>
+            <li><a href="#">Samsung</a></li>
+            <li><a href="#">Xiaomi</a></li>
+            <li><a href="#">Oppo</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Kết nối</h4>
+          <div class="social">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <p class="copy">© 2025 PhoneStore. All rights reserved.</p>
+    </footer>
+    <script src="assets/js/checkout.js"></script>
+  </body>
+</html>

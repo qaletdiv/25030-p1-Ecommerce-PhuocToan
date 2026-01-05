@@ -46,7 +46,7 @@ const PRODUCTS = [
   {
     id: 3,
     name: "iPhone 17 Pro Max",
-    price: 6690000,
+    price: 66900000,
     category: "iphone",
     image: "assets/img/feature/iphone-17-pro-max_3.webp",
     featured: true,
@@ -74,7 +74,6 @@ const PRODUCTS = [
     images: [
       "assets/img/feature/samsung-galaxy-a17-xanh.jpg",
       "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/s/a/samsung-galaxy-a17-5g-back-4.jpg",
-      ,
       "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/s/a/samsung-galaxy-a17-5g-gray-4.jpg",
     ],
     colors: ["Xanh", "Đen", "Xám"],

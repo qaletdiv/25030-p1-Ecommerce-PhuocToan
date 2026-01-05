@@ -316,6 +316,9 @@ body {
 
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
 }
+.footer-col {
+  list-style: none;
+}
 
 /* Tiêu đề các mục */
 .footer-col h3,

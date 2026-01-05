@@ -53,7 +53,7 @@ if (!currentUser) {
 }
 
 // ===== CART =====
-const cartKey = `cart_${currentUser.id}`;
+const cartKey = `cart_${currentUser.email}`;
 let cart = JSON.parse(localStorage.getItem(cartKey)) || [];
 
 const cartList = document.querySelector("#cart-list");
@@ -61,36 +61,23 @@ const totalPrice = document.querySelector("#total-price");
 
 // ===== RENDER CART =====
 function renderCart() {
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  if (!currentUser) {
-    alert("Vui lòng đăng nhập để xem giỏ hàng");
-    window.location.href = "login.html";
-    return;
-  }
-
-  const cartKey = `cart_${currentUser.email}`;
-  const cart = JSON.parse(localStorage.getItem(cartKey)) || [];
-
-  const cartList = document.querySelector("#cart-list");
-  const totalPrice = document.querySelector("#total-price");
-
   cartList.innerHTML = "";
 
   if (cart.length === 0) {
     cartList.innerHTML = `<p class="empty-cart">Giỏ hàng của bạn đang trống</p>`;
-    totalPrice.textContent = "0 đ";
+    totalPrice.textContent = "0đ";
     return;
   }
 
   let total = 0;
 
-  cart.forEach((item) => {
+  cart.forEach((item, index) => {
     const itemTotal = item.price * item.quantity;
     total += itemTotal;
 
     cartList.innerHTML += `
       <div class="cart-item">
-        <img src="${item.image}" alt="${item.name}">
+        <img src="${item.image}" />
         <div class="cart-info">
           <h3>${item.name}</h3>
           <p>Màu: ${item.color}</p>
@@ -99,48 +86,25 @@ function renderCart() {
           <p>Số lượng: ${item.quantity}</p>
         </div>
         <div class="cart-right">
-          <p class="item-total">${itemTotal.toLocaleString()}đ</p>
-          <button class="btn-remove" data-id="${item.id}">Xóa</button>
+          <p>${itemTotal.toLocaleString()}đ</p>
+          <button class="btn-remove" data-index="${index}">Xóa</button>
         </div>
       </div>
     `;
   });
 
   totalPrice.textContent = total.toLocaleString() + "đ";
-
-  // Gắn sự kiện xóa
-  document.querySelectorAll(".btn-remove").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const id = Number(btn.dataset.id);
-      const index = cart.findIndex((item) => item.id === id);
-      if (index !== -1) {
-        cart.splice(index, 1);
-        localStorage.setItem(cartKey, JSON.stringify(cart));
-        renderCart();
-      }
-    });
-  });
 }
 
-// ===== XỬ LÝ CLICK =====
-cartList.addEventListener("click", function (event) {
-  const id = Number(event.target.dataset.id);
-  if (!id) return;
+// ===== XÓA =====
+cartList.addEventListener("click", function (e) {
+  if (!e.target.classList.contains("btn-remove")) return;
 
-  const item = cart.find((p) => p.id === id);
-  if (!item) return;
+  const index = Number(e.target.dataset.index);
+  cart.splice(index, 1);
 
-  if (event.target.className === "btn-increase") {
-    item.quantity++;
-  }
-  if (event.target.className === "btn-decrease") {
-    if (item.quantity > 1) item.quantity--;
-  }
-  if (event.target.className === "btn-remove") {
-    cart = cart.filter((p) => p.id !== id);
-  }
-
-  updateCart();
+  localStorage.setItem(cartKey, JSON.stringify(cart));
+  renderCart();
 });
 
 // ===== UPDATE CART =====
@@ -151,3 +115,14 @@ function updateCart() {
 
 // ===== INIT =====
 renderCart();
+
+const checkoutBtn = document.querySelector(".checkout-btn");
+
+checkoutBtn.addEventListener("click", function () {
+  if (cart.length === 0) {
+    alert("Giỏ hàng trống, không thể thanh toán");
+    return;
+  }
+
+  window.location.href = "checkout.html";
+});

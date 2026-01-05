@@ -97,10 +97,12 @@ function renderColors() {
     const colorButton = document.createElement("button");
     colorButton.className = "option-btn";
     colorButton.textContent = colorName;
+    colorContainer.appendChild(colorButton);
 
     // Khi click vào nút chọn màu
     colorButton.addEventListener("click", function () {
       selectedColor = colorName; // cập nhật màu chọn
+      //chỗ này dùng để push vô trong giỏ hàng đó
 
       // Xóa class active của tất cả nút
       const allButtons = colorContainer.querySelectorAll(".option-btn");
@@ -109,7 +111,6 @@ function renderColors() {
       // Thêm active cho nút vừa click
       colorButton.classList.add("active");
     });
-    colorContainer.appendChild(colorButton);
   });
 }
 renderColors();
@@ -123,6 +124,7 @@ function renderStorages() {
     const storageButton = document.createElement("button");
     storageButton.className = "option-btn";
     storageButton.textContent = storageName;
+    storageContainer.appendChild(storageButton);
 
     // Khi click vào nút chọn dung lượng
     storageButton.addEventListener("click", function () {
@@ -135,7 +137,6 @@ function renderStorages() {
       // Thêm active cho nút vừa click
       storageButton.classList.add("active");
     });
-    storageContainer.appendChild(storageButton);
   });
 }
 renderStorages();
@@ -156,7 +157,7 @@ function renderGallery() {
     if (index === 0) {
       thumb.classList.add("active");
     }
-
+    thumbnailList.appendChild(thumb);
     // Click vào thumbnail -> thay ảnh chính
     thumb.addEventListener("click", function () {
       mainImage.src = imgSrc;
@@ -165,8 +166,6 @@ function renderGallery() {
       allThumbs.forEach((t) => t.classList.remove("active"));
       thumb.classList.add("active");
     });
-
-    thumbnailList.appendChild(thumb);
   });
 }
 renderGallery();
@@ -209,7 +208,7 @@ addCartBtn.addEventListener("click", function () {
   }
 
   const cartKey = `cart_${currentUser.email}`;
-  let cart = JSON.parse(localStorage.getItem(cartKey)) || [];
+  let cart = JSON.parse(localStorage.getItem(cartKey)) || []; //đoạn này nếu có mới lấy
 
   const quantity = Number(document.querySelector("#quantityInput").value);
 
@@ -238,6 +237,8 @@ addCartBtn.addEventListener("click", function () {
   localStorage.setItem(cartKey, JSON.stringify(cart));
   alert("Đã thêm vào giỏ hàng 🛒");
 });
+console.log(selectedColor);
+console.log();
 
 // ================== 8. SẢN PHẨM LIÊN QUAN ==================
 function renderRelatedProducts() {

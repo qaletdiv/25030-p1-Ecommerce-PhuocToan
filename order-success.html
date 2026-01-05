@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Đặt hàng thành công</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/order-success.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <main class="success-page">
+      <div class="success-card">
+        <!-- ICON -->
+        <div class="success-icon">
+          <i class="fa-solid fa-circle-check"></i>
+        </div>
+
+        <!-- MESSAGE -->
+        <h1>Đặt hàng thành công 🎉</h1>
+        <p class="sub">Cảm ơn bạn đã mua sắm tại <strong>PhoneStore</strong></p>
+
+        <!-- ORDER SUMMARY -->
+        <div class="order-summary">
+          <h2>Thông tin đơn hàng</h2>
+
+          <p><strong>Khách hàng:</strong> <span id="cus-name"></span></p>
+          <p><strong>Số điện thoại:</strong> <span id="cus-phone"></span></p>
+          <p><strong>Địa chỉ:</strong> <span id="cus-address"></span></p>
+
+          <div class="summary-items" id="summary-items"></div>
+
+          <div class="summary-total">
+            Tổng tiền: <strong id="summary-total">0đ</strong>
+          </div>
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="success-actions">
+          <a href="index.html" class="btn primary">Tiếp tục mua sắm</a>
+          <a href="account.html" class="btn outline">Xem lịch sử đơn hàng</a>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h3>PhoneStore</h3>
+          <p>📍 123 Nguyễn Văn Linh, Hải Châu, TP Đà Nẵng</p>
+          <p>📞 0909 123 456</p>
+          <p>✉️ support@phonestore.vn</p>
+          <p>🕒 8:00 - 21:00 (T2 - CN)</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Chính sách</h4>
+          <ul>
+            <li><a href="#">Bảo hành</a></li>
+            <li><a href="#">Đổi trả</a></li>
+            <li><a href="#">Vận chuyển</a></li>
+            <li><a href="#">Bảo mật</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Sản phẩm</h4>
+          <ul>
+            <li><a href="#">iPhone</a></li>
+            <li><a href="#">Samsung</a></li>
+            <li><a href="#">Xiaomi</a></li>
+            <li><a href="#">Oppo</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Kết nối</h4>
+          <div class="social">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <p class="copy">© 2025 PhoneStore. All rights reserved.</p>
+    </footer>
+
+    <script src="assets/js/order-success.js"></script>
+  </body>
+</html>
