@@ -1,3 +1,49 @@
+function renderHeaderActions() {
+  const actions = document.querySelector("#headerActions");
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  //xóa HTML cũ khi render lại
+  actions.innerHTML = "";
+
+  //Chưa đăng nhập
+  if (!currentUser) {
+    //cái chỗ cart thì ít bữa làm cái trang giỏ hàng
+    actions.innerHTML = `
+    <a href="login.html" class="account">
+      <i class="fa-solid fa-user"></i>Đăng nhập
+    </a>
+    
+    <a href="#" class="cart">
+      <i class="fa-solid fa-cart-shopping"></i>
+    </a>
+    `;
+  }
+  //Trường hợp đã đăng nhập
+  else {
+    actions.innerHTML = `
+    <a href="account.html" class="account">
+      <i class="fa-solid fa-user"></i> ${currentUser.fullName}
+    </a>
+    
+    <a href="#" id="logoutBtn">Đăng xuất</a>
+    <a href="cart.html" class="cart">
+      <i class="fa-solid fa-cart-shopping"></i>
+    </a>
+    `;
+
+    const logoutBtn = document.querySelector("#logoutBtn");
+    logoutBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      //Xóa trạng thái đăng nhập
+      localStorage.removeItem("currentUser");
+
+      //Render lại header về trang thái guest
+      renderHeaderActions();
+    });
+  }
+}
+
+renderHeaderActions();
 // ================== AUTH CHECK ==================
 const authUser = JSON.parse(localStorage.getItem("currentUser"));
 

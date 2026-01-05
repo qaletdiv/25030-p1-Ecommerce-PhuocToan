@@ -44,7 +44,7 @@ function renderHeaderActions() {
   //Trường hợp đã đăng nhập
   else {
     actions.innerHTML = `
-    <a href="#" class="account">
+    <a href="account.html" class="account">
       <i class="fa-solid fa-user"></i> ${currentUser.fullName}
     </a>
     
