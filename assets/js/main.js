@@ -158,6 +158,7 @@ function handleAddToCart(product) {
   }
 
   localStorage.setItem(cartKey, JSON.stringify(cart));
+  renderHeaderActions(); // Cập nhật badge số lượng giỏ hàng
   alert("Đã thêm vào giỏ hàng 🛒");
 }
 

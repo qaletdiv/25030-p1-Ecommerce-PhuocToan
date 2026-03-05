@@ -36,6 +36,7 @@ function renderHeaderActions() {
     <a href="#" id="logoutBtn">Đăng xuất</a>
     <a href="cart.html" class="cart">
       <i class="fa-solid fa-cart-shopping"></i>
+      ${getCartCount() > 0 ? `<span class="cart-count">${getCartCount()}</span>` : ""}
     </a>
     `;
 

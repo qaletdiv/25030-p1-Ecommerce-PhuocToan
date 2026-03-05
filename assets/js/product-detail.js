@@ -36,6 +36,7 @@ function renderHeaderActions() {
     <a href="#" id="logoutBtn">Đăng xuất</a>
     <a href="cart.html" class="cart">
       <i class="fa-solid fa-cart-shopping"></i>
+      ${getCartCount() > 0 ? `<span class="cart-count">${getCartCount()}</span>` : ""}
     </a>
     `;
 
@@ -53,6 +54,9 @@ function renderHeaderActions() {
 }
 
 renderHeaderActions();
+
+// ================== DATA (khai báo sớm để dùng trong search) ==================
+const products = JSON.parse(localStorage.getItem("products"));
 
 //GỢI Ý KHI GÕ (SEARCH DROPDOWN GIỐNG TRANG WEB BÁN HÀNG)
 //Lấy element kết quả search
@@ -124,7 +128,6 @@ vì trong localStorage id là 1 số nên ép so sánh cho đúng
 const params = new URLSearchParams(window.location.search);
 const productId = Number(params.get("id"));
 
-const products = JSON.parse(localStorage.getItem("products"));
 const product = products.find((product) => product.id === productId);
 
 // State chọn màu và dung lượng
@@ -302,10 +305,9 @@ addCartBtn.addEventListener("click", function () {
   }
 
   localStorage.setItem(cartKey, JSON.stringify(cart));
+  renderHeaderActions(); // Cập nhật badge số lượng giỏ hàng
   alert("Đã thêm vào giỏ hàng 🛒");
 });
-console.log(selectedColor);
-console.log();
 
 // ================== 8.5. MUA NGAY ==================
 // BUG_008 FIX: Thêm chức năng cho nút "Mua ngay"
@@ -333,7 +335,7 @@ if (buyNowBtn) {
       (item) =>
         item.id === product.id &&
         item.color === selectedColor &&
-        item.storage === selectedStorage,
+        item.storage === selectedStorage
     );
 
     if (existItem) {
