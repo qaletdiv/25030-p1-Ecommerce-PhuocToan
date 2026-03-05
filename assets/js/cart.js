@@ -1,3 +1,12 @@
+// BUG_003 FIX: Hàm lấy số lượng sản phẩm trong giỏ hàng
+function getCartCount() {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  if (!currentUser) return 0;
+  const cartKey = `cart_${currentUser.email}`;
+  const cart = JSON.parse(localStorage.getItem(cartKey)) || [];
+  return cart.reduce((total, item) => total + item.quantity, 0);
+}
+
 function renderHeaderActions() {
   const actions = document.querySelector("#headerActions");
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -83,7 +92,11 @@ function renderCart() {
           <p>Màu: ${item.color}</p>
           <p>Dung lượng: ${item.storage}</p>
           <p>Giá: ${item.price.toLocaleString()}đ</p>
-          <p>Số lượng: ${item.quantity}</p>
+          <div class="quantity-control">
+            <button class="btn-decrease" data-index="${index}">-</button>
+            <span class="item-quantity">${item.quantity}</span>
+            <button class="btn-increase" data-index="${index}">+</button>
+          </div>
         </div>
         <div class="cart-right">
           <p>${itemTotal.toLocaleString()}đ</p>
@@ -105,6 +118,25 @@ cartList.addEventListener("click", function (e) {
 
   localStorage.setItem(cartKey, JSON.stringify(cart));
   renderCart();
+});
+
+// BUG_009 FIX: Tăng/giảm số lượng sản phẩm trong giỏ hàng
+cartList.addEventListener("click", function (e) {
+  if (e.target.classList.contains("btn-increase")) {
+    const index = Number(e.target.dataset.index);
+    cart[index].quantity += 1;
+    updateCart();
+  }
+
+  if (e.target.classList.contains("btn-decrease")) {
+    const index = Number(e.target.dataset.index);
+    if (cart[index].quantity > 1) {
+      cart[index].quantity -= 1;
+    } else {
+      cart.splice(index, 1); // Xóa nếu số lượng về 0
+    }
+    updateCart();
+  }
 });
 
 // ===== UPDATE CART =====

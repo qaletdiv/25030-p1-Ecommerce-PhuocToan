@@ -1,3 +1,12 @@
+// BUG_003 FIX: Hàm lấy số lượng sản phẩm trong giỏ hàng
+function getCartCount() {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  if (!currentUser) return 0;
+  const cartKey = `cart_${currentUser.email}`;
+  const cart = JSON.parse(localStorage.getItem(cartKey)) || [];
+  return cart.reduce((total, item) => total + item.quantity, 0);
+}
+
 //1.Sau khi nó hàm initData trong storage dữ liệu từ mock-data
 //thì ta sẽ có dữ liệu
 
@@ -51,6 +60,7 @@ function renderHeaderActions() {
     <a href="#" id="logoutBtn">Đăng xuất</a>
     <a href="cart.html" class="cart">
       <i class="fa-solid fa-cart-shopping"></i>
+      ${getCartCount() > 0 ? `<span class="cart-count">${getCartCount()}</span>` : ""}
     </a>
     `;
 
@@ -130,7 +140,7 @@ function handleAddToCart(product) {
     (item) =>
       item.id === product.id &&
       item.color === defaultColor &&
-      item.storage === defaultStorage
+      item.storage === defaultStorage,
   );
 
   if (existItem) {
@@ -198,7 +208,7 @@ searchInput.addEventListener("input", function () {
   }
   //Lọc sản phẩm theo tên
   const matchedProducts = products.filter((product) =>
-    product.name.toLowerCase().includes(keyword)
+    product.name.toLowerCase().includes(keyword),
   );
 
   // Nếu không tìm thấy sản phẩm nào

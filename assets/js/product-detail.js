@@ -1,3 +1,12 @@
+// BUG_003 FIX: Hàm lấy số lượng sản phẩm trong giỏ hàng
+function getCartCount() {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  if (!currentUser) return 0;
+  const cartKey = `cart_${currentUser.email}`;
+  const cart = JSON.parse(localStorage.getItem(cartKey)) || [];
+  return cart.reduce((total, item) => total + item.quantity, 0);
+}
+
 function renderHeaderActions() {
   const actions = document.querySelector("#headerActions");
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -239,6 +248,14 @@ increaseBtn.addEventListener("click", function () {
   quanityInput.value = currentValue + 1;
 });
 
+// BUG_007 FIX: Chỉ cho phép nhập số nguyên dương > 0
+quanityInput.addEventListener("input", function () {
+  let value = quanityInput.value.replace(/[^0-9]/g, ""); // Xóa ký tự không phải số
+  value = parseInt(value) || 1; // Chuyển sang số nguyên, mặc định là 1
+  if (value < 1) value = 1;
+  quanityInput.value = value;
+});
+
 // ================== 7. ADD TO CART ==================
 const addCartBtn = document.querySelector(".add-cart-btn");
 addCartBtn.addEventListener("click", function () {
@@ -290,7 +307,56 @@ addCartBtn.addEventListener("click", function () {
 console.log(selectedColor);
 console.log();
 
-// ================== 8. SẢN PHẨM LIÊN QUAN ==================
+// ================== 8.5. MUA NGAY ==================
+// BUG_008 FIX: Thêm chức năng cho nút "Mua ngay"
+const buyNowBtn = document.querySelector(".buy-now-btn");
+if (buyNowBtn) {
+  buyNowBtn.addEventListener("click", function () {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+    if (!currentUser) {
+      alert("Vui lòng đăng nhập");
+      window.location.href = "login.html";
+      return;
+    }
+
+    if (!selectedColor || !selectedStorage) {
+      alert("Vui lòng chọn màu và dung lượng");
+      return;
+    }
+
+    const cartKey = `cart_${currentUser.email}`;
+    let cart = JSON.parse(localStorage.getItem(cartKey)) || [];
+    const quantity = Number(document.querySelector("#quantityInput").value);
+
+    const existItem = cart.find(
+      (item) =>
+        item.id === product.id &&
+        item.color === selectedColor &&
+        item.storage === selectedStorage,
+    );
+
+    if (existItem) {
+      existItem.quantity += quantity;
+    } else {
+      cart.push({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.images[0],
+        color: selectedColor,
+        storage: selectedStorage,
+        quantity: quantity,
+      });
+    }
+
+    localStorage.setItem(cartKey, JSON.stringify(cart));
+    // Chuyển thẳng sang giỏ hàng
+    window.location.href = "cart.html";
+  });
+}
+
+// ================== 9. SẢN PHẨM LIÊN QUAN ==================
 function renderRelatedProducts() {
   const relatedContainer = document.querySelector("#relatedProducts");
   relatedContainer.innerHTML = "";
