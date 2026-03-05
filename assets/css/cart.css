@@ -167,3 +167,33 @@ body {
 .checkout-btn:hover {
   background: #6a00ff;
 }
+
+/* BUG_009 FIX: Quantity control in cart */
+.quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+.quantity-control .btn-decrease,
+.quantity-control .btn-increase {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #ccc;
+  background: #f5f5f5;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.quantity-control .btn-decrease:hover,
+.quantity-control .btn-increase:hover {
+  background: #e0e0e0;
+}
+.quantity-control .item-quantity {
+  min-width: 24px;
+  text-align: center;
+  font-weight: bold;
+}

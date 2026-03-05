@@ -157,7 +157,7 @@ function applyFilterAndSort() {
   renderProducts(filteredData);
 }
 
-// BUG_005/BUG_006 FIX
+// BUG_005/BUG_006 FIX: Khai báo đúng tên biến (HTML dùng id="sortOption")
 const sortSelect = document.querySelector("#sortOption");
 const categoryFilter = document.querySelector("#categoryFilter");
 
