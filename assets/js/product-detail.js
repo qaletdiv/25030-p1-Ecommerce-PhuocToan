@@ -45,6 +45,56 @@ function renderHeaderActions() {
 
 renderHeaderActions();
 
+//GỢI Ý KHI GÕ (SEARCH DROPDOWN GIỐNG TRANG WEB BÁN HÀNG)
+//Lấy element kết quả search
+const searchResult = document.querySelector("#searchResult");
+const searchInput = document.querySelector("#searchInput");
+
+//lắng nghe user ng dùng gõ phím
+searchInput.addEventListener("input", function () {
+  //lấy giá trị người dùng nhập vào,chuyển sang chữ thường,xóa khoảng cách đầu cuối
+  const keyword = searchInput.value.toLowerCase().trim();
+
+  //xóa kết quả cũ mỗi lần gõ
+  searchResult.innerHTML = "";
+
+  //nếu input rỗng(tức là người dùng không nhập -> ẩn dropdown)
+  if (!keyword) {
+    searchResult.style.display = "none";
+    return;
+  }
+  //Lọc sản phẩm theo tên
+  const matchedProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(keyword),
+  );
+
+  // Nếu không tìm thấy sản phẩm nào
+  if (matchedProducts.length === 0) {
+    searchResult.innerHTML = `<p style="padding:12px">Không tìm thấy sản phẩm</p>`;
+    searchResult.style.display = "block";
+    return;
+  }
+  // Render từng sản phẩm tìm được
+
+  matchedProducts.slice(0, 5).forEach((product) => {
+    const itemHTML = `
+      <div class="search-item">
+        <img src="${product.image}" alt="${product.name}" />
+        <div class="info">
+          <p class="name">${product.name}</p>
+          <p class="price">${product.price.toLocaleString()}đ</p>
+        </div>
+      </div>
+    `;
+
+    searchResult.innerHTML += itemHTML;
+  });
+
+  // Hiện dropdown kết quả
+  //Vì CSS đang là display :none
+  searchResult.style.display = "block";
+});
+
 // ================== 1. LẤY DATA ==================
 //window.location.search là thuộc tính của trình duyệt window.location
 /* 
@@ -217,7 +267,7 @@ addCartBtn.addEventListener("click", function () {
     (item) =>
       item.id === product.id &&
       item.color === selectedColor &&
-      item.storage === selectedStorage
+      item.storage === selectedStorage,
   );
 
   if (existItem) {
@@ -246,7 +296,7 @@ function renderRelatedProducts() {
   relatedContainer.innerHTML = "";
 
   const relatedProducts = products.filter(
-    (p) => p.category === product.category && p.id !== product.id
+    (p) => p.category === product.category && p.id !== product.id,
   );
 
   relatedProducts.forEach((p) => {

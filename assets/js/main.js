@@ -87,7 +87,9 @@ function renderFeaturedProducts() {
 
     const productHTML = `
     <div class="product-item">
-      <img src="${product.image}" alt="${product.name}">
+        <a href="product-detail.html?id=${product.id}">
+          <img src="${product.image}" alt="${product.name}">
+        </a>
       <h3>${product.name}</h3>
       <p class="price">${product.price.toLocaleString()}đ</p>
 
