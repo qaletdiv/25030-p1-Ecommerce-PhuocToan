@@ -47,6 +47,10 @@ function renderHeaderActions() {
 
 renderHeaderActions();
 
+// BUG_005 FIX: Khai báo products trước khi search listener dùng đến
+const allProducts = JSON.parse(localStorage.getItem("products")); // tất cả sản phẩm
+const products = allProducts; // Alias dùng cho search dropdown
+
 //GỢI Ý KHI GÕ (SEARCH DROPDOWN GIỐNG TRANG WEB BÁN HÀNG)
 //Lấy element kết quả search
 const searchResult = document.querySelector("#searchResult");
@@ -80,14 +84,15 @@ searchInput.addEventListener("input", function () {
   // Render từng sản phẩm tìm được
 
   matchedProducts.slice(0, 5).forEach((product) => {
+    // BUG_001 FIX: Bọc search-item bằng thẻ <a> để click chuyển đến trang chi tiết sản phẩm
     const itemHTML = `
-      <div class="search-item">
+      <a href="product-detail.html?id=${product.id}" class="search-item">
         <img src="${product.image}" alt="${product.name}" />
         <div class="info">
           <p class="name">${product.name}</p>
           <p class="price">${product.price.toLocaleString()}đ</p>
         </div>
-      </div>
+      </a>
     `;
 
     searchResult.innerHTML += itemHTML;
@@ -98,7 +103,6 @@ searchInput.addEventListener("input", function () {
   searchResult.style.display = "block";
 });
 
-const allProducts = JSON.parse(localStorage.getItem("products")); // tất cả sản phẩm
 const productListContainer = document.querySelector("#productList"); // thẻ chứa sản phẩm
 
 function renderProducts(productArray) {

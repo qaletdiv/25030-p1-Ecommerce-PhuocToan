@@ -90,14 +90,15 @@ searchInput.addEventListener("input", function () {
   // Render từng sản phẩm tìm được
 
   matchedProducts.slice(0, 5).forEach((product) => {
+    // BUG_001 FIX: Bọc search-item bằng thẻ <a> để click chuyển đến trang chi tiết sản phẩm
     const itemHTML = `
-      <div class="search-item">
+      <a href="product-detail.html?id=${product.id}" class="search-item">
         <img src="${product.image}" alt="${product.name}" />
         <div class="info">
           <p class="name">${product.name}</p>
           <p class="price">${product.price.toLocaleString()}đ</p>
         </div>
-      </div>
+      </a>
     `;
 
     searchResult.innerHTML += itemHTML;
@@ -335,7 +336,7 @@ if (buyNowBtn) {
       (item) =>
         item.id === product.id &&
         item.color === selectedColor &&
-        item.storage === selectedStorage
+        item.storage === selectedStorage,
     );
 
     if (existItem) {

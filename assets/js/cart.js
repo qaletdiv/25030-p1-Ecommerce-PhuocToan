@@ -119,6 +119,7 @@ cartList.addEventListener("click", function (e) {
 
   localStorage.setItem(cartKey, JSON.stringify(cart));
   renderCart();
+  renderHeaderActions(); // BUG_010 FIX: Cập nhật lại số lượng trên icon cart ở header
 });
 
 // BUG_009 FIX: Tăng/giảm số lượng sản phẩm trong giỏ hàng
@@ -144,6 +145,7 @@ cartList.addEventListener("click", function (e) {
 function updateCart() {
   localStorage.setItem(cartKey, JSON.stringify(cart));
   renderCart();
+  renderHeaderActions(); // BUG_010 FIX: Cập nhật lại số lượng trên icon cart ở header
 }
 
 // ===== INIT =====

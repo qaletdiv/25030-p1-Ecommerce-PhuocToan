@@ -81,6 +81,8 @@ body {
   gap: 10px;
   padding: 10px;
   cursor: pointer;
+  text-decoration: none;
+  color: inherit;
 }
 
 .search-item:hover {
